@@ -23,7 +23,12 @@ public class UsuarioRepositoryTest {
         Usuario usuario = Usuario.builder().nome("guilherme").email("guilhermerxcha@gmial.com").senha("123456").build();
         usuarioRepository.save(usuario);
        boolean result = usuarioRepository.existsByEmail("guilhermerxcha@gmial.com");
-
         assertThat(result).isTrue();
+    }
+    @Test
+    void devedeveRetornarFalsoQuandoNaoHouverusuarioCadastrado(){
+        usuarioRepository.deleteAll();
+        boolean result = usuarioRepository.existsByEmail("guilhermer@gmail");
+        assertThat(result).isFalse();
     }
 }
