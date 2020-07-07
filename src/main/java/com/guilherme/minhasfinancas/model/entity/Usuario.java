@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "usuario")
 @Data
 @Builder
+
 public class Usuario {
     @Id
     @Column(name = "id")
