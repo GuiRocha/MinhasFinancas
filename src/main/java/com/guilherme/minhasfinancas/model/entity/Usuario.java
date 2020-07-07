@@ -2,17 +2,13 @@ package com.guilherme.minhasfinancas.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Builder
-@Data
 @Table(name = "usuario")
-
+@Data
+@Builder
 public class Usuario {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
