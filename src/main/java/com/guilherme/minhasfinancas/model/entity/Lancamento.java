@@ -1,13 +1,12 @@
 package com.guilherme.minhasfinancas.model.entity;
 
+import com.guilherme.minhasfinancas.model.enums.TipoLancamento;
 import lombok.*;
-import org.springframework.data.convert.Jsr310Converters;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Builder
