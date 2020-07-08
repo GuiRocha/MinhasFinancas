@@ -83,7 +83,7 @@ class UsuarioServiceImplTest {
                 .thenReturn(Optional.of(usuario));
 
         Throwable exception = catchThrowable(() -> usuarioService.autenticar("guilhermerxcha@gmail.com", "123"));
-        assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("senha inválida.");
+        assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("Senha Invalida");
     }
 
 
