@@ -58,4 +58,26 @@ class UsuarioServiceImplTest {
             usuarioService.validarEmail("email@gmail.com");
         }
     }
+    @Test
+    void deveLancarErroAoNaoEncontrarUsuarioCadastrado() {
+        try {
+            Mockito.when(usuarioRepository
+                    .existsByEmail(Mockito.anyString()))
+                    .thenReturn(false);
+        } catch (RegraNegocioException regraNegocioException) {
+            usuarioService.validarEmail("email@gmail.com");
+        }
+    }
+    @Test
+    void deveLancarErroQuandoSenhaIncorreta() {
+        String senha = "12345678";
+        Usuario usuario = Usuario.builder().email("guilhermerxcha@gmail.com").senha(senha).build();
+        try {
+            Mockito.when(usuarioRepository
+                    .findAllByEmail(Mockito.anyString()))
+                    .thenReturn(Optional.of(usuario));
+        } catch (RegraNegocioException regraNegocioException) {
+            usuarioService.autenticar("guilhermerxcha@gmail.com", "123");
+        }
+    }
 }
