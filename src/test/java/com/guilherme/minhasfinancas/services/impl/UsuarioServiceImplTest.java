@@ -4,15 +4,16 @@ import com.guilherme.minhasfinancas.exception.RegraNegocioException;
 import com.guilherme.minhasfinancas.model.entity.Usuario;
 import com.guilherme.minhasfinancas.repositories.UsuarioRepository;
 import com.guilherme.minhasfinancas.services.UsuarioService;
-import org.junit.Test.None;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 class UsuarioServiceImplTest {
@@ -22,24 +23,38 @@ class UsuarioServiceImplTest {
     UsuarioRepository usuarioRepository;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         usuarioService = new UsuarioServiceImpl(usuarioRepository);
     }
 
     @Test
-    public void deveValidarEmail(){
+    public void deveValidarEmail() {
         Mockito.when(usuarioRepository
                 .existsByEmail(Mockito.anyString()))
                 .thenReturn(false);
         usuarioService.validarEmail("email@gmail.com");
     }
     @Test
-    void deveLancarErroAoValidarEmailsQuandoExistirCadastro(){
+    void deveAutenticarUsuarioComSucesso(){
+        String email = "guilhermerxcha@gmail.com";
+        String senha = "123456";
+
+        Usuario usuario = Usuario.builder().email(email).senha(senha).build();
+
+        Mockito.when(usuarioRepository.findAllByEmail(email)).thenReturn(Optional.of(usuario));
+
+        Usuario result = usuarioService.autenticar(email, senha);
+
+        assertThat(result).isNotNull();
+
+    }
+    @Test
+    void deveLancarErroAoValidarEmailsQuandoExistirCadastro() {
         try {
             Mockito.when(usuarioRepository
                     .existsByEmail(Mockito.anyString()))
                     .thenReturn(true);
-        }catch (RegraNegocioException regraNegocioException){
+        } catch (RegraNegocioException regraNegocioException) {
             usuarioService.validarEmail("email@gmail.com");
         }
     }

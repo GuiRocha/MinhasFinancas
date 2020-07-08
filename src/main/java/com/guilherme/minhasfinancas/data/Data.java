@@ -20,5 +20,4 @@ public class Data implements CommandLineRunner {
                 .senha("123456").build();
         usuarioRepository.saveAll(Arrays.asList(usuarioGuilherme));
     }
-
 }
