@@ -20,7 +20,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/autenticar")
     public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {
         try {
             Usuario usuarioAutenticado = usuarioService.autenticar(dto.getEmail(),
