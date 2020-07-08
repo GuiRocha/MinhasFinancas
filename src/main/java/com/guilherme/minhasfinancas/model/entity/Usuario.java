@@ -2,6 +2,7 @@ package com.guilherme.minhasfinancas.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
