@@ -16,7 +16,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.1.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
     compile group: 'com.h2database', name: 'h2', version: '1.4.200'
-
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'

@@ -1,5 +1,6 @@
 package com.guilherme.minhasfinancas.services.impl;
 
+import com.guilherme.minhasfinancas.exception.ErroAutenticacao;
 import com.guilherme.minhasfinancas.exception.RegraNegocioException;
 import com.guilherme.minhasfinancas.model.entity.Usuario;
 import com.guilherme.minhasfinancas.repositories.UsuarioRepository;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 @ExtendWith(SpringExtension.class)
 class UsuarioServiceImplTest {
@@ -34,8 +36,9 @@ class UsuarioServiceImplTest {
                 .thenReturn(false);
         usuarioService.validarEmail("email@gmail.com");
     }
+
     @Test
-    void deveAutenticarUsuarioComSucesso(){
+    void deveAutenticarUsuarioComSucesso() {
         String email = "guilhermerxcha@gmail.com";
         String senha = "123456";
 
@@ -48,6 +51,7 @@ class UsuarioServiceImplTest {
         assertThat(result).isNotNull();
 
     }
+
     @Test
     void deveLancarErroAoValidarEmailsQuandoExistirCadastro() {
         try {
@@ -58,6 +62,7 @@ class UsuarioServiceImplTest {
             usuarioService.validarEmail("email@gmail.com");
         }
     }
+
     @Test
     void deveLancarErroAoNaoEncontrarUsuarioCadastrado() {
         try {
@@ -68,16 +73,18 @@ class UsuarioServiceImplTest {
             usuarioService.validarEmail("email@gmail.com");
         }
     }
+
     @Test
     void deveLancarErroQuandoSenhaIncorreta() {
         String senha = "12345678";
         Usuario usuario = Usuario.builder().email("guilhermerxcha@gmail.com").senha(senha).build();
-        try {
-            Mockito.when(usuarioRepository
-                    .findAllByEmail(Mockito.anyString()))
-                    .thenReturn(Optional.of(usuario));
-        } catch (RegraNegocioException regraNegocioException) {
-            usuarioService.autenticar("guilhermerxcha@gmail.com", "123");
-        }
+        Mockito.when(usuarioRepository
+                .findAllByEmail(Mockito.anyString()))
+                .thenReturn(Optional.of(usuario));
+
+        Throwable exception = catchThrowable(() -> usuarioService.autenticar("guilhermerxcha@gmail.com", "123"));
+        assertThat(exception).isInstanceOf(ErroAutenticacao.class).hasMessage("senha inválida.");
     }
+
+
 }
