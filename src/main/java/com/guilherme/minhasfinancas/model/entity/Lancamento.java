@@ -21,7 +21,7 @@ public class Lancamento {
     private Long id;
 
     @Column(name = "descricao")
-    private Integer descricao;
+    private String descricao;
 
     @Column(name = "mes")
     private Integer mes;
