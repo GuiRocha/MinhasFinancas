@@ -87,4 +87,9 @@ public class LancamentoServiceImpl implements LancamentoService {
         }
     }
 
+    @Override
+    public Optional<Lancamento> obterPorId(Long id) {
+        return lancamentoRepository.findById(id);
+    }
+
 }

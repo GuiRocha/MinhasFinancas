@@ -4,6 +4,7 @@ import com.guilherme.minhasfinancas.model.enums.StatusLancamento;
 import com.guilherme.minhasfinancas.model.enums.TipoLancamento;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 
 
 @Data
-// @Builder
+//@Builder
 @NoArgsConstructor
 @Entity
 @Table(name = "lancamento", schema = "financas")
@@ -48,7 +49,6 @@ public class Lancamento {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING )
     private StatusLancamento statusLancamento;
-
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")

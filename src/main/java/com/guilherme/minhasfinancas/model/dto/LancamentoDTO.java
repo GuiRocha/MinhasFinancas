@@ -2,6 +2,7 @@ package com.guilherme.minhasfinancas.model.dto;
 
 import java.math.BigDecimal;
 
+import com.guilherme.minhasfinancas.model.entity.Usuario;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,4 +16,5 @@ public class LancamentoDTO {
     private BigDecimal valor;
     private String tipo;
     private String status;
+    private Usuario usuario;
 }
