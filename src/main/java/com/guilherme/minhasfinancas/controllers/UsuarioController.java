@@ -21,25 +21,26 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping("/autenticar")
-    public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity autenticar(@RequestBody final UsuarioDTO dto) {
+
         try {
-            Usuario usuarioAutenticado = usuarioService.autenticar(dto.getEmail(),  dto.getSenha());
+            final Usuario usuarioAutenticado = usuarioService.autenticar(dto.getEmail(),  dto.getSenha());
             return ResponseEntity.ok(usuarioAutenticado);
-        } catch (ErroAutenticacao erroAutenticacao) {
+        } catch (final ErroAutenticacao erroAutenticacao) {
             return ResponseEntity.badRequest().body(erroAutenticacao.getMessage());
         }
     }
 
     @PostMapping
-    public ResponseEntity salvar(@RequestBody UsuarioDTO dto) {
-        Usuario usuario = Usuario.builder().nome(dto.getNome())
+    public ResponseEntity salvar(@RequestBody final UsuarioDTO dto) {
+        final Usuario usuario = Usuario.builder().nome(dto.getNome())
                 .email(dto.getEmail())
                 .senha(dto.getSenha())
                 .build();
         try {
-            Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
+            final Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
             return new ResponseEntity(usuarioSalvo, HttpStatus.CREATED);
-        } catch (RegraNegocioException regraNegocioException) {
+        } catch (final RegraNegocioException regraNegocioException) {
             return ResponseEntity.badRequest().body(regraNegocioException.getMessage());
         }
     }

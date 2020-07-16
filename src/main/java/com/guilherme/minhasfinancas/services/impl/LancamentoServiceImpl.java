@@ -2,6 +2,7 @@ package com.guilherme.minhasfinancas.services.impl;
 
 import com.guilherme.minhasfinancas.exception.RegraNegocioException;
 import com.guilherme.minhasfinancas.model.entity.Lancamento;
+import com.guilherme.minhasfinancas.model.entity.Usuario;
 import com.guilherme.minhasfinancas.model.enums.StatusLancamento;
 import com.guilherme.minhasfinancas.repositories.LancamentoRepository;
 import com.guilherme.minhasfinancas.services.LancamentoService;
@@ -12,9 +13,12 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.lang.StackWalker.Option;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class LancamentoServiceImpl implements LancamentoService {
@@ -82,4 +86,5 @@ public class LancamentoServiceImpl implements LancamentoService {
             throw new RegraNegocioException("Informe um tipo de lançamento");
         }
     }
+
 }
