@@ -3,8 +3,8 @@ package com.guilherme.minhasfinancas.controllers;
 import com.guilherme.minhasfinancas.services.LancamentoService;
 import com.guilherme.minhasfinancas.services.UsuarioService;
 import com.guilherme.minhasfinancas.exception.RegraNegocioException;
-import com.guilherme.minhasfinancas.model.dto.LancamentoDTO;
 import com.guilherme.minhasfinancas.model.entity.Lancamento;
+import com.guilherme.minhasfinancas.model.dto.LancamentoDTO;
 import com.guilherme.minhasfinancas.model.entity.Usuario;
 import com.guilherme.minhasfinancas.model.enums.StatusLancamento;
 import com.guilherme.minhasfinancas.model.enums.TipoLancamento;
@@ -26,12 +26,13 @@ public class LancamentoController {
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody LancamentoDTO dto){
-        return lancamentoService.salvar(dto);
+        return null;
 
     }
 
     public Lancamento converter(LancamentoDTO dto){
         Lancamento lancamento = new Lancamento();
+       
         lancamento.setId(dto.getId());
         lancamento.setDescricao(dto.getDescricao());
         lancamento.setAno(dto.getAno());

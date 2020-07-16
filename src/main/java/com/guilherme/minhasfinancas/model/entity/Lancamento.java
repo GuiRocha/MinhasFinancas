@@ -4,18 +4,23 @@ import com.guilherme.minhasfinancas.model.enums.StatusLancamento;
 import com.guilherme.minhasfinancas.model.enums.TipoLancamento;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Builder
+
 @Data
+// @Builder
+@NoArgsConstructor
+@Entity
 @Table(name = "lancamento", schema = "financas")
 public class Lancamento {
-    @Id
+
+	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

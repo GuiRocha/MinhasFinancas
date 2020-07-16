@@ -1,4 +1,4 @@
-package com.guilherme.minhasfinancas.controllers;
+package com.guilherme.minhasfinancas.model.dto;
 
 import java.math.BigDecimal;
 
